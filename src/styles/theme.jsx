@@ -55,13 +55,21 @@ const theme = extendTheme({
   },
   components: {
     Input: { ...inputSelectStyles },
-    Select: { ...inputSelectStyles },
+    Select: {
+      color: "brand.grey2",
+      _placeholder: {
+        color: "brand.grey1",
+      },
+      ...inputSelectStyles,
+    },
     Button: {
       variants: {
         primary: (props) => ({
           boxSizing: "border-box",
           bg: props.isDisabled ? "brand.primaryDisabled" : "brand.primary",
-          borderColor: "brand.primary",
+          borderColor: props.isDisabled
+            ? "brand.primaryDisabled"
+            : "brand.primary",
           borderStyle: "solid",
           color: "#FFF",
           _hover: {
@@ -69,7 +77,6 @@ const theme = extendTheme({
             bg: "brand.primaryFocus",
             borderColor: "brand.primaryFocus",
           },
-          
         }),
         grey: {
           boxSizing: "border-box",
