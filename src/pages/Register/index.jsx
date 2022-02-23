@@ -15,7 +15,7 @@ import Select from "../../components/Select";
 import { useHistory } from "react-router-dom";
 
 const Register = () => {
-  const history = useHistory()
+  const history = useHistory();
 
   return (
     <Container maxW="1440px" p={0}>
@@ -69,30 +69,15 @@ const Register = () => {
                 Rápido e grátis, vamos nessa!
               </Text>
             </VStack>
-            <Input
-              label="Nome"
-              error=""
-              placeholder="Digite aqui seu nome"
-            />
-            <Input
-              label="Email"
-              error=""
-              placeholder="Digite aqui seu email"
-            />
-            <Input
-              label="Senha"
-              error=""
-              placeholder="Digite aqui sua senha"
-            />
+            <Input label="Nome" error="" placeholder="Digite aqui seu nome" />
+            <Input label="Email" error="" placeholder="Digite aqui seu email" />
+            <Input label="Senha" error="" placeholder="Digite aqui sua senha" />
             <Input
               label="Confirmar senha"
               error=""
               placeholder="Digite aqui sua senha"
             />
-            <Select
-              label="Selecionar módulo"
-              placeholder="Primeiro módulo"
-            >
+            <Select label="Selecionar módulo" placeholder="Primeiro módulo">
               <option value="Segundo módulo">Segundo módulo</option>
               <option value="Terceiro módulo">Terceiro módulo</option>
             </Select>
@@ -100,14 +85,13 @@ const Register = () => {
               variant="primary"
               isDisabled={false}
               sx={{
-
-                w:"100%",
-                minH:["38.38px", "48px"],
-                px:"22.3336px",
-                borderWidth:"1.2182px",
-                borderRadius:"4px",
-                fontSize:["0.8rem", "1rem"],
-                fontWeight:500,
+                w: "100%",
+                minH: ["38.38px", "48px"],
+                px: "22.3336px",
+                borderWidth: "1.2182px",
+                borderRadius: "4px",
+                fontSize: ["0.8rem", "1rem"],
+                fontWeight: 500,
               }}
             >
               Cadastrar

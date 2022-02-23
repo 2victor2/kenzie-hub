@@ -23,7 +23,7 @@ const Login = () => {
   const handleClick = () => setShow(!show);
   return (
     <Container maxW="1440px" p={0}>
-      <Flex h="100vh" py={[5, 10]} flexDirection="column" alignItems="center">
+      <Flex h="100vh" py={[5, 10]} flexDir="column" alignItems="center">
         <HStack
           justifyContent="center"
           w={["295.83px", "370px"]}
