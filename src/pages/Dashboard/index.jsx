@@ -90,7 +90,9 @@ const Dashboard = () => {
           <List />
         </Flex>
       </Flex>
-      <Modal isCentered closeOnOverlayClick isOpen={true} onClose={onClose}>
+
+      {/* MODAL */}
+      <Modal isCentered closeOnOverlayClick isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent w={["295px", "370px"]}>
           <ModalHeader
@@ -131,20 +133,40 @@ const Dashboard = () => {
           </ModalBody>
 
           <ModalFooter bg="brand.grey3" px={["17px", "22px"]} pt={0}>
-              {modalType === "Cadastrar Tecnologia" ? (
-                <Button variant="primary" w="100%" minH={["38.38px", "48px"]} fontSize={["0.8rem", "1rem"]} >Cadastrar Tecnologia</Button>
-              ) : (
-                <SimpleGrid  w="100%" columns={3} gap={2}>
-                  <GridItem colSpan={2}>
-                    <Button variant="primary" minH={["38.38px", "48px"]} w="100%" fontSize={["0.8rem", "1rem"]} isDisabled>
-                      Salvar alterações
-                    </Button>
-                  </GridItem>
-                  <GridItem colSpan={1}>
-                    <Button variant="grey" w="100%" minH={["38.38px", "48px"]} fontSize={["0.8rem", "1rem"]} >Excluir</Button>
-                  </GridItem>
-            </SimpleGrid>
-              )}
+            {modalType === "Cadastrar Tecnologia" ? (
+              <Button
+                variant="primary"
+                w="100%"
+                minH={["38.38px", "48px"]}
+                fontSize={["0.8rem", "1rem"]}
+              >
+                Cadastrar Tecnologia
+              </Button>
+            ) : (
+              <SimpleGrid w="100%" columns={3} gap={2}>
+                <GridItem colSpan={2}>
+                  <Button
+                    variant="primary"
+                    minH={["38.38px", "48px"]}
+                    w="100%"
+                    fontSize={["0.8rem", "1rem"]}
+                    isDisabled
+                  >
+                    Salvar alterações
+                  </Button>
+                </GridItem>
+                <GridItem colSpan={1}>
+                  <Button
+                    variant="grey"
+                    w="100%"
+                    minH={["38.38px", "48px"]}
+                    fontSize={["0.8rem", "1rem"]}
+                  >
+                    Excluir
+                  </Button>
+                </GridItem>
+              </SimpleGrid>
+            )}
           </ModalFooter>
         </ModalContent>
       </Modal>

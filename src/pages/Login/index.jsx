@@ -20,7 +20,7 @@ import { useState } from "react";
 const Login = () => {
   const history = useHistory();
   const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
+  const togglePassword = () => setShow(!show);
   return (
     <Container maxW="1440px" p={0}>
       <Flex h="100vh" py={[5, 10]} flexDir="column" alignItems="center">
@@ -69,7 +69,7 @@ const Login = () => {
                   color="brand.grey1"
                   _hover={{ bg: "brand.grey2" }}
                   _focus={{ ring:0}}
-                  onClick={handleClick}
+                  onClick={togglePassword}
                 >
                   {show ? <FaEyeSlash /> : <FaEye />}
                 </Button>

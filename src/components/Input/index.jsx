@@ -5,7 +5,7 @@ const Input = ({ label, name, register, error, ...rest }) => (
     <FormLabel fontSize={["0.57rem", "0.76rem"]} color="brand.grey0">{label}</FormLabel>
     <ChakraInput
       variant="filled"
-      // {...register(name)}
+      {...register(name)}
       {...rest}
       w={["263.79px", "329.93px"]}
       h={["38.38px", "48px"]}
