@@ -1,0 +1,21 @@
+:root {
+  --toastify-color-error: #e83f5b;
+  --toastify-color-success: #3fe864;
+  --toastify-toast-background: #343b41;
+  --toastify-color-light: #fff;
+  --toastify-text-color-light: #fff;
+  --toastify-toast-width: 286px;
+  --toastify-toast-height: 69px;
+}
+
+.Toastify__toast-theme--light {
+  margin: 0 auto;
+  max-width: var(--toastify-toast-width);
+  min-height: var(--toastify-toast-height);
+  background: var(--toastify-toast-background);
+  color: var(--toastify-text-color-light);
+}
+.Toastify__close-button--light {
+  color: #868e86;
+  opacity: 0.3;
+}

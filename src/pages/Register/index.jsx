@@ -15,11 +15,13 @@ import Logo from "../../images/Logo.svg";
 import Input from "../../components/Input";
 import Select from "../../components/Select";
 import { useHistory } from "react-router-dom";
+import api from "../../services/api";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const Q = {
@@ -80,7 +82,10 @@ const Register = () => {
       bio: "Usuário criado por Kenzinho",
       contact: data.email,
     };
-    
+    api
+      .post("users", formattedData)
+      .then((res) => toast.success("Usuário cadastrado com sucesso!"))
+      .catch((err) => toast.error("Email já existente!"));
   };
   const history = useHistory();
 
