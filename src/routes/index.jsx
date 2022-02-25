@@ -3,16 +3,16 @@ import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
-const Routes = () => (
+const Routes = ({auth, setAuth, techs, setTechs, user, setUser}) => (
   <Switch>
     <Route exact path="/">
-      <Login />
+      <Login  auth={auth} setAuth={setAuth} setUser={setUser} />
     </Route>
     <Route path="/register">
-      <Register />
+      <Register auth={auth} />
     </Route>
     <Route path="/dashboard">
-      <Dashboard />
+      <Dashboard auth={auth} setAuth={setAuth} techs={techs} setTechs={setTechs} user={user} />
     </Route>
   </Switch>
 );

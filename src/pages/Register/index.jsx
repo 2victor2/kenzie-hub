@@ -14,7 +14,7 @@ import {
 import Logo from "../../images/Logo.svg";
 import Input from "../../components/Input";
 import Select from "../../components/Select";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import api from "../../services/api";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -23,7 +23,8 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
-const Register = () => {
+const Register = ({auth}) => {
+  const history = useHistory();
   const Q = {
     1: { title: "Primeiro módulo", description: " (Introdução ao Front-end)" },
     2: { title: "Segundo módulo", description: " (Frontend Avançado)" },
@@ -63,8 +64,6 @@ const Register = () => {
     defaultValues: { ...defaultValues },
     resolver: yupResolver(schema),
   });
-  console.log("dirtyFields", dirtyFields);
-  console.log("errors", errors);
   const onSubmit = (data) => {
     delete data.password_confirmation;
     const formattedData = {
@@ -84,10 +83,13 @@ const Register = () => {
     };
     api
       .post("users", formattedData)
-      .then((res) => toast.success("Usuário cadastrado com sucesso!"))
+      .then((res) => toast.success("Conta criada com sucesso!"))
       .catch((err) => toast.error("Email já existente!"));
   };
-  const history = useHistory();
+
+  if(auth){
+    return <Redirect to="/dashboard" />
+  }
 
   return (
     <Container maxW="1440px" p={0}>
