@@ -1,7 +1,7 @@
 import { List as ChakraList } from "@chakra-ui/react";
 import ListItem from "../ListItem";
 
-const List = ({techs, handleModal, setTechId}) => {
+const List = ({ techs, handleModal, setTechId }) => {
   return (
     <ChakraList
       spacing={3}
@@ -18,7 +18,12 @@ const List = ({techs, handleModal, setTechId}) => {
       }}
     >
       {techs.map((tech) => (
-        <ListItem key={tech.id} tech={tech} handleModal={handleModal} setTechId={setTechId} />
+        <ListItem
+          key={tech.id}
+          tech={tech}
+          handleModal={handleModal}
+          setTechId={setTechId}
+        />
       ))}
     </ChakraList>
   );

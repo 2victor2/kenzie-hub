@@ -28,6 +28,7 @@ import Input from "../../components/Input";
 import List from "../../components/List";
 import Select from "../../components/Select";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const Dashboard = ({ auth, setAuth, techs, setTechs, user }) => {
   const [userToken] = useState(localStorage.getItem("@KenzieHub:userToken"));
@@ -108,173 +109,188 @@ const Dashboard = ({ auth, setAuth, techs, setTechs, user }) => {
   }
 
   return (
-    <Container maxW="1440px" p={0}>
-      <Flex flexDir="column" pb={[5, 10]}>
-        <Header setAuth={setAuth} />
-        <Flex
-          h={["131px", "118px"]}
-          flexDir={["column", "row"]}
-          px="20px"
-          alignItems={["flex-start", "center"]}
-          justifyContent={["center", "space-around"]}
-          borderTopWidth="1px"
-          borderTopStyle="solid"
-          borderTopColor="brand.grey3"
-          borderBottomWidth="1px"
-          borderBottomStyle="solid"
-          borderBottomColor="brand.grey3"
-        >
-          <HStack
-            w={["100%", "463px", "751px"]}
-            h="100%"
-            alignItems={["flex-start", "center"]}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
+      <Container maxW="1440px" p={0}>
+        <Flex flexDir="column" pb={[5, 10]}>
+          <Header setAuth={setAuth} />
+          <Flex
+            h={["131px", "118px"]}
             flexDir={["column", "row"]}
-            justifyContent={["center", "space-between"]}
+            px="20px"
+            alignItems={["flex-start", "center"]}
+            justifyContent={["center", "space-around"]}
+            borderTopWidth="1px"
+            borderTopStyle="solid"
+            borderTopColor="brand.grey3"
+            borderBottomWidth="1px"
+            borderBottomStyle="solid"
+            borderBottomColor="brand.grey3"
           >
-            <Heading fontWeight="bold" fontSize="1.125rem" color="brand.grey0">
-              Olá, {user.name}!
-            </Heading>
-            <Text
-              fontSize="0.75rem"
-              color="brand.grey1"
-              my="10px !important"
-              mx="0px !important"
+            <HStack
+              w={["100%", "463px", "751px"]}
+              h="100%"
+              alignItems={["flex-start", "center"]}
+              flexDir={["column", "row"]}
+              justifyContent={["center", "space-between"]}
             >
-              {user.course_module}
-            </Text>
-          </HStack>
-        </Flex>
-        <Flex flexDir="column" alignItems="center" px="20px">
-          <HStack
-            w={["100%", "463px", "751px"]}
-            justifyContent="space-between"
-            my="26px"
-          >
-            <Heading fontWeight={600} fontSize="1rem" color="brand.grey0">
-              Tecnologias
-            </Heading>
-            <Button
-              variant="black"
-              w="32px"
-              h="32px"
-              borderRadius="4px"
-              fontWeight="bold"
-              fontSize="1.375rem"
-              onClick={() => handleModal("Cadastrar Tecnologia")}
+              <Heading
+                fontWeight="bold"
+                fontSize="1.125rem"
+                color="brand.grey0"
+              >
+                Olá, {user.name}!
+              </Heading>
+              <Text
+                fontSize="0.75rem"
+                color="brand.grey1"
+                my="10px !important"
+                mx="0px !important"
+              >
+                {user.course_module}
+              </Text>
+            </HStack>
+          </Flex>
+          <Flex flexDir="column" alignItems="center" px="20px">
+            <HStack
+              w={["100%", "463px", "751px"]}
+              justifyContent="space-between"
+              my="26px"
             >
-              +
-            </Button>
-          </HStack>
-          <List techs={techs} setTechId={setTechId} handleModal={handleModal} />
+              <Heading fontWeight={600} fontSize="1rem" color="brand.grey0">
+                Tecnologias
+              </Heading>
+              <Button
+                variant="black"
+                w="32px"
+                h="32px"
+                borderRadius="4px"
+                fontWeight="bold"
+                fontSize="1.375rem"
+                onClick={() => handleModal("Cadastrar Tecnologia")}
+              >
+                +
+              </Button>
+            </HStack>
+            <List
+              techs={techs}
+              setTechId={setTechId}
+              handleModal={handleModal}
+            />
+          </Flex>
         </Flex>
-      </Flex>
 
-      {/* MODAL */}
-      <Modal isCentered closeOnOverlayClick isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent w={["295px", "370px"]}>
-          <ModalHeader
-            color="brand.grey0"
-            bg="brand.grey2"
-            h={["40px", "50px"]}
-            px={["17px", "22px"]}
-          >
-            {modalType}
-          </ModalHeader>
-          <ModalCloseButton color="brand.grey1" top="var(--chakra-space-4)" />
-          <ModalBody bg="brand.grey3" px={["17px", "22px"]}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <FormControl>
-                <Input
-                  label={
-                    modalType === "Cadastrar Tecnologia"
-                      ? "Nome"
-                      : "Nome do projeto"
-                  }
-                  name="title"
-                  id="title"
-                  register={register}
-                  placeholder={
-                    modalType === "Cadastrar Tecnologia"
-                      ? "Digite o nome"
-                      : "Não é possível alterar o nome!"
-                  }
-                />
-                <Select
-                  label={
-                    modalType === "Cadastrar Tecnologia"
-                      ? "Selecione o status"
-                      : "Status"
-                  }
-                  name="status"
-                  id="status"
-                  register={register}
-                  placeholder="-- Selecione o status --"
-                >
-                  <option value="Iniciante">Iniciante</option>
-                  <option value="Intermediário">Intermediário</option>
-                  <option value="Avançado">Avançado</option>
-                </Select>
-                {modalType === "Cadastrar Tecnologia" ? (
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    w="100%"
-                    minH={["38.38px", "48px"]}
-                    fontSize={["0.8rem", "1rem"]}
-                    isDisabled={
-                      !(
-                        Object.keys(dirtyFields).length ===
-                        Object.keys(defaultValues).length
-                      )
+        {/* MODAL */}
+        <Modal isCentered closeOnOverlayClick isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent w={["295px", "370px"]}>
+            <ModalHeader
+              color="brand.grey0"
+              bg="brand.grey2"
+              h={["40px", "50px"]}
+              px={["17px", "22px"]}
+            >
+              {modalType}
+            </ModalHeader>
+            <ModalCloseButton color="brand.grey1" top="var(--chakra-space-4)" />
+            <ModalBody bg="brand.grey3" px={["17px", "22px"]}>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <FormControl>
+                  <Input
+                    label={
+                      modalType === "Cadastrar Tecnologia"
+                        ? "Nome"
+                        : "Nome do projeto"
                     }
+                    name="title"
+                    id="title"
+                    register={register}
+                    placeholder={
+                      modalType === "Cadastrar Tecnologia"
+                        ? "Digite o nome"
+                        : "Não é possível alterar o nome!"
+                    }
+                  />
+                  <Select
+                    label={
+                      modalType === "Cadastrar Tecnologia"
+                        ? "Selecione o status"
+                        : "Status"
+                    }
+                    name="status"
+                    id="status"
+                    register={register}
+                    placeholder="-- Selecione o status --"
                   >
-                    Cadastrar Tecnologia
-                  </Button>
-                ) : (
-                  <SimpleGrid w="100%" columns={3} gap={2}>
-                    <GridItem colSpan={2}>
-                      <Button
-                        variant="primary"
-                        type="submit"
-                        minH={["38.38px", "48px"]}
-                        w="100%"
-                        fontSize={["0.8rem", "1rem"]}
-                        isDisabled={
-                          !(
-                            Object.keys(dirtyFields).length ===
-                            Object.keys(defaultValues).length
-                          )
-                        }
-                      >
-                        Salvar alterações
-                      </Button>
-                    </GridItem>
-                    <GridItem colSpan={1}>
-                      <Button
-                        variant="grey"
-                        onClick={deleteTech}
-                        w="100%"
-                        minH={["38.38px", "48px"]}
-                        fontSize={["0.8rem", "1rem"]}
-                      >
-                        Excluir
-                      </Button>
-                    </GridItem>
-                  </SimpleGrid>
-                )}
-              </FormControl>
-            </form>
-          </ModalBody>
+                    <option value="Iniciante">Iniciante</option>
+                    <option value="Intermediário">Intermediário</option>
+                    <option value="Avançado">Avançado</option>
+                  </Select>
+                  {modalType === "Cadastrar Tecnologia" ? (
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      w="100%"
+                      minH={["38.38px", "48px"]}
+                      fontSize={["0.8rem", "1rem"]}
+                      isDisabled={
+                        !(
+                          Object.keys(dirtyFields).length ===
+                          Object.keys(defaultValues).length
+                        )
+                      }
+                    >
+                      Cadastrar Tecnologia
+                    </Button>
+                  ) : (
+                    <SimpleGrid w="100%" columns={3} gap={2}>
+                      <GridItem colSpan={2}>
+                        <Button
+                          variant="primary"
+                          type="submit"
+                          minH={["38.38px", "48px"]}
+                          w="100%"
+                          fontSize={["0.8rem", "1rem"]}
+                          isDisabled={
+                            !(
+                              Object.keys(dirtyFields).length ===
+                              Object.keys(defaultValues).length
+                            )
+                          }
+                        >
+                          Salvar alterações
+                        </Button>
+                      </GridItem>
+                      <GridItem colSpan={1}>
+                        <Button
+                          variant="grey"
+                          onClick={deleteTech}
+                          w="100%"
+                          minH={["38.38px", "48px"]}
+                          fontSize={["0.8rem", "1rem"]}
+                        >
+                          Excluir
+                        </Button>
+                      </GridItem>
+                    </SimpleGrid>
+                  )}
+                </FormControl>
+              </form>
+            </ModalBody>
 
-          <ModalFooter
-            bg="brand.grey3"
-            px={["17px", "22px"]}
-            pt={0}
-          ></ModalFooter>
-        </ModalContent>
-      </Modal>
-    </Container>
+            <ModalFooter
+              bg="brand.grey3"
+              px={["17px", "22px"]}
+              pt={0}
+            ></ModalFooter>
+          </ModalContent>
+        </Modal>
+      </Container>
+    </motion.div>
   );
 };
 

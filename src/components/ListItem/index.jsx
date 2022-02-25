@@ -1,6 +1,6 @@
 import { Heading, ListItem as ChakraListItem, Text } from "@chakra-ui/react";
 
-const ListItem = ({ tech: { title, status, id }, handleModal, setTechId, }) => (
+const ListItem = ({ tech: { title, status, id }, handleModal, setTechId }) => (
   <ChakraListItem
     w="100%"
     h="48.73px"
@@ -11,7 +11,10 @@ const ListItem = ({ tech: { title, status, id }, handleModal, setTechId, }) => (
     bg="brand.grey4"
     borderRadius="4px"
     _hover={{ cursor: "pointer", bg: "brand.grey2" }}
-    onClick={() => {handleModal("Alterar Tecnologia"); setTechId(id)}}
+    onClick={() => {
+      handleModal("Alterar Tecnologia");
+      setTechId(id);
+    }}
   >
     <Heading fontWeight="bold" fontSize="0.888rem" color="brand.grey0">
       {title}

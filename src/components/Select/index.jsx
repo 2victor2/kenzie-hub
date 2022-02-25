@@ -20,9 +20,15 @@ const Select = ({ label, name, children, register, error, ...rest }) => (
       borderWidth={["0.973988px", "1.2182px"]}
       _placeholder={{ fontSize: ["0.875rem", "1rem"] }}
     >
-        {children}
+      {children}
     </ChakraSelect>
-    {error ? <Text fontSize="0.634rem" color="brand.error">{error}</Text> : <></>}
+    {error ? (
+      <Text fontSize="0.634rem" color="brand.error">
+        {error}
+      </Text>
+    ) : (
+      <></>
+    )}
   </VStack>
 );
 

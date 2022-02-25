@@ -51,7 +51,6 @@ const theme = extendTheme({
       body: {
         bg: "brand.grey4",
       },
-      
     },
   },
   components: {
@@ -105,7 +104,6 @@ const theme = extendTheme({
         },
       },
     },
-    
   },
 });
 

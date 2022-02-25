@@ -1,10 +1,10 @@
 import { Button, HStack, Image } from "@chakra-ui/react";
 import Logo from "../../images/Logo.svg";
 
-const Header = ({setAuth}) => {
+const Header = ({ setAuth }) => {
   const Logout = () => {
-    localStorage.clear()
-    setAuth(false)
+    localStorage.clear();
+    setAuth(false);
   };
   return (
     <HStack justifyContent={["center"]} px="20px" w="100%" h="72px">
