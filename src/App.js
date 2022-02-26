@@ -8,7 +8,7 @@ function App() {
   const [techs, setTechs] = useState([]);
   return (
     <>
-      <ToastContainer />
+      <ToastContainer autoClose={3000} />
       <Routes
         techs={techs}
         setTechs={setTechs}
