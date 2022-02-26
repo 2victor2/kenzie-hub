@@ -84,7 +84,10 @@ const Register = ({ auth }) => {
     };
     api
       .post("users", formattedData)
-      .then((res) => toast.success("Conta criada com sucesso!"))
+      .then((res) => {
+        toast.success("Conta criada com sucesso!");
+        history.push("/");
+      })
       .catch((err) => toast.error("Email já existente!"));
   };
 

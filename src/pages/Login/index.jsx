@@ -50,6 +50,7 @@ const Login = ({ auth, setAuth, setUser }) => {
         localStorage.setItem("@KenzieHub:userToken", data.token);
         setUser(data.user);
         setAuth(true);
+        history.push("/dashboard");
       })
       .catch((err) => toast.error("Senha ou email inválidos"));
   };
