@@ -23,7 +23,8 @@ import api from "../../services/api.js";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 
-const Login = ({ auth, setAuth, setUser }) => {
+const Login = ({ auth, setAuth }) => {
+  console.log("loginAuth: ", auth)
   const history = useHistory();
   const [show, setShow] = useState(false);
   const togglePassword = () => setShow(!show);
@@ -48,7 +49,7 @@ const Login = ({ auth, setAuth, setUser }) => {
       .post("sessions", data)
       .then(({ data }) => {
         localStorage.setItem("@KenzieHub:userToken", data.token);
-        setUser(data.user);
+        localStorage.setItem("@KenzieHub:user", JSON.stringify(data.user));
         setAuth(true);
         history.push("/dashboard");
       })

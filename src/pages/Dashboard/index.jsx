@@ -30,7 +30,9 @@ import Select from "../../components/Select";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 
-const Dashboard = ({ auth, setAuth, techs, setTechs, user }) => {
+const Dashboard = ({ auth, setAuth, techs, setTechs}) => {
+  console.log("dashboardAuth: ", auth)
+  const [user] = useState(JSON.parse(localStorage.getItem("@KenzieHub:user")))
   const [userToken] = useState(localStorage.getItem("@KenzieHub:userToken"));
   const [updated, setUpdated] = useState(0);
   const [modalType, setModalType] = useState("");
