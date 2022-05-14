@@ -12,7 +12,7 @@ const Routes = ({ techs, setTechs, }) => {
     const token = localStorage.getItem("@KenzieHub:userToken");
 
     if (token) setAuth(true);
-  });
+  }, []);
 
   return (
     <AnimatePresence>

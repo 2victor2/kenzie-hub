@@ -24,7 +24,6 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 
 const Login = ({ auth, setAuth }) => {
-  console.log("loginAuth: ", auth)
   const history = useHistory();
   const [show, setShow] = useState(false);
   const togglePassword = () => setShow(!show);
